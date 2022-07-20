@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         // 플레이어, 오버레이 연결
         playerManager.injectView(binding.playerView, binding.vdOverlay)
         // 미디어 설정
-        // playerManager.addMediaItem(MediaItem.fromUri("https://afterdoc-video.s3.ap-northeast-2.amazonaws.com/HLSVideo/20220718175393_test/one.m3u8"))
         playerManager.addMediaItem(MediaItem.fromUri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"))
         playerManager.addMediaItem(MediaItem.fromUri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"))
 
