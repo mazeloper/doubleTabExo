@@ -1,174 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/exo_controls_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#42000000">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topController"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/exo_controls_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#42000000">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topController"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="closeScreen"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/close_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@null"
+                android:onClick="closeScreen"
+                android:src="@drawable/ic_baseline_close_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:paddingHorizontal="16dp"
+                android:text="가장 빠른 큰 전기톱 절단 나무 기계 기술, 놀라운 수제 나무 절단 기계"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/setting_btn"
+                app:layout_constraintStart_toEndOf="@id/close_btn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageButton
+                android:id="@+id/setting_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@null"
+                android:src="@drawable/ic_baseline_settings_24"
+                app:layout_constraintBaseline_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_title"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <ImageButton
-            android:id="@+id/close_btn"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@null"
-            android:onClick="@{(v)->activity.controllerEvent(v)}"
-            android:src="@drawable/ic_baseline_close_24"
+            android:id="@+id/prevBtn"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_skip_previous_36"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_title"
+            app:layout_constraintEnd_toStartOf="@id/playPauseBtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_title"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:ellipsize="end"
-            android:lines="1"
-            android:paddingHorizontal="16dp"
-            android:text="가장 빠른 큰 전기톱 절단 나무 기계 기술, 놀라운 수제 나무 절단 기계"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/setting_btn"
-            app:layout_constraintStart_toEndOf="@id/close_btn"
-            app:layout_constraintTop_toTopOf="parent" />
-
 
         <ImageButton
-            android:id="@+id/setting_btn"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@null"
-            android:src="@drawable/ic_baseline_settings_24"
-            app:layout_constraintBaseline_toBottomOf="parent"
+            android:id="@+id/playPauseBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:onClick="@{()->playerManager.updatePlayerState()}"
+            android:src="@drawable/ic_baseline_play_circle_outline_50"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_title"
+            app:layout_constraintEnd_toStartOf="@id/nextBtn"
+            app:layout_constraintStart_toEndOf="@id/prevBtn"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/nextBtn"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_skip_next_36"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/playPauseBtn"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-    <ImageButton
-        android:id="@+id/prevBtn"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:background="?android:selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_baseline_skip_previous_36"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/playPauseBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageButton
-        android:id="@+id/playPauseBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="?android:selectableItemBackgroundBorderless"
-        android:onClick="@{(v)->activity.controllerEvent(v)}"
-        android:src="@drawable/ic_baseline_play_circle_outline_50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/nextBtn"
-        app:layout_constraintStart_toEndOf="@id/prevBtn"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/nextBtn"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:background="?android:selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_baseline_skip_next_36"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/playPauseBtn"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/progressLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/exo_position"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="00:00"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/colon"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/colon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="/"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@id/exo_position"
-                app:layout_constraintEnd_toStartOf="@id/exo_duration"
-                app:layout_constraintStart_toEndOf="@id/exo_position"
-                app:layout_constraintTop_toTopOf="@id/exo_position" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/exo_duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="00:00"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@id/exo_position"
-                app:layout_constraintStart_toEndOf="@id/colon"
-                app:layout_constraintTop_toTopOf="@id/exo_position" />
-
-            <ImageButton
-                android:id="@+id/fullscreenButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="16dp"
-                android:background="@null"
-                android:onClick="@{(v)->activity.controllerEvent(v)}"
-                android:src="@drawable/ic_baseline_fullscreen_24"
-                app:layout_constraintBottom_toBottomOf="@id/exo_position"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.exoplayer2.ui.DefaultTimeBar
-            android:id="@+id/exo_progress"
+        <LinearLayout
+            android:id="@+id/progressLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:bar_height="2dp"
-            app:buffered_color="#80FFFFFF"
-            app:played_color="@color/white"
-            app:scrubber_color="@color/white"
-            app:scrubber_disabled_size="10dp"
-            app:scrubber_enabled_size="15dp"
-            app:unplayed_color="#80FFFFFF" />
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/exo_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="00:00"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/colon"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/colon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="/"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/exo_position"
+                    app:layout_constraintEnd_toStartOf="@id/exo_duration"
+                    app:layout_constraintStart_toEndOf="@id/exo_position"
+                    app:layout_constraintTop_toTopOf="@id/exo_position" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/exo_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="00:00"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/exo_position"
+                    app:layout_constraintStart_toEndOf="@id/colon"
+                    app:layout_constraintTop_toTopOf="@id/exo_position" />
+
+                <ImageButton
+                    android:id="@+id/fullscreenButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_baseline_fullscreen_24"
+                    app:layout_constraintBottom_toBottomOf="@id/exo_position"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.exoplayer2.ui.DefaultTimeBar
+                android:id="@+id/exo_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bar_height="2dp"
+                app:buffered_color="#80FFFFFF"
+                app:played_color="@color/white"
+                app:scrubber_color="@color/white"
+                app:scrubber_disabled_size="10dp"
+                app:scrubber_enabled_size="15dp"
+                app:unplayed_color="#80FFFFFF" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.stacon.todoexo.MainActivity" />
+
+        <variable
+            name="playerManager"
+            type="com.stacon.todoexo.PlayerManager" />
+    </data>
+</layout>

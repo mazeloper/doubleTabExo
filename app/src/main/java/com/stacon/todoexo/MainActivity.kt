@@ -2,13 +2,16 @@ package com.stacon.todoexo
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.databinding.DataBindingUtil
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.TimeBar
@@ -33,15 +36,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val view = binding.root
         val controls = view.findViewById<ConstraintLayout>(R.id.exo_controls_root)
         controlsBinding = ExoPlaybackControlViewBinding.bind(controls)
-
-        setContentView(view)
+        controlsBinding.playerManager = playerManager
+        controlsBinding.activity = this
 
         setSystemUI(false)
-
         // 플레이어 라이플사이클옵저버 연결
         lifecycle.addObserver(playerManager)
         // 더블탭플레이어 초기화
@@ -92,18 +94,9 @@ class MainActivity : AppCompatActivity() {
             override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
             }
         })
-        controlsBinding.fullscreenButton.setOnClickListener {
-            toggleFullscreen()
-        }
-        controlsBinding.playPauseBtn.setOnClickListener {
-            playerManager.player?.let {
-                if (it.isPlaying) it.pause()
-                else it.play()
-            }
-        }
     }
 
-    private fun toggleFullscreen() {
+    fun toggleFullscreen() {
         if (isVideoFullscreen) {
             changeConstraints(false)
             setSystemUI(false)
@@ -115,6 +108,13 @@ class MainActivity : AppCompatActivity() {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
             isVideoFullscreen = true
         }
+    }
+
+    fun closeScreen() {
+        AlertDialog.Builder(this).apply {
+            setView(android.R.layout.select_dialog_item)
+            title = "??"
+        }.create().show()
     }
 
     private fun changeConstraints(fullscreen: Boolean) {

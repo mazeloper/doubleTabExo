@@ -19,9 +19,9 @@ import com.stacon.todoexo.custom.SeekListener
 class VideoOverlay(context: Context, private val attrs: AttributeSet?) :
     ConstraintLayout(context, attrs), PlayerDoubleTapListener {
 
-    private var rootLayout: ConstraintLayout
-    private var secondsView: SecondsView
-    private var circleClipTapView: CircleClipTapView
+    private lateinit var rootLayout: ConstraintLayout
+    private lateinit var secondsView: SecondsView
+    private lateinit var circleClipTapView: CircleClipTapView
     private var playerView: DoubleTapPlayerView? = null
 
     private var seekListener: SeekListener? = null
@@ -30,11 +30,11 @@ class VideoOverlay(context: Context, private val attrs: AttributeSet?) :
     private var player: Player? = null
     private var playerViewRef: Int = -1
 
-    constructor(context: Context) : this(context, null) {
-        this.visibility = View.INVISIBLE
-    }
-
     init {
+        attrs ?: kotlin.run { this.visibility = View.INVISIBLE }
+
+//        val inflater = LayoutInflater.from(context)
+//        binding = ActivityMainBinding.inflate(inflater)
         LayoutInflater.from(context).inflate(R.layout.vd_overlay, this, true)
 
         rootLayout = findViewById(R.id.root_constraint_layout)
