@@ -10,20 +10,52 @@
         android:id="@+id/topController"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.utils.widget.ImageFilterButton
+        <ImageButton
+            android:id="@+id/close_btn"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:onClick="@{(v)->activity.controllerEvent(v)}"
+            android:src="@drawable/ic_baseline_close_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:paddingHorizontal="16dp"
+            android:text="가장 빠른 큰 전기톱 절단 나무 기계 기술, 놀라운 수제 나무 절단 기계"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/setting_btn"
+            app:layout_constraintStart_toEndOf="@id/close_btn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageButton
+            android:id="@+id/setting_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:background="@null"
             android:src="@drawable/ic_baseline_settings_24"
+            app:layout_constraintBaseline_toBottomOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_title"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -33,7 +65,7 @@
         android:id="@+id/prevBtn"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:background="@null"
+        android:background="?android:selectableItemBackgroundBorderless"
         android:src="@drawable/ic_baseline_skip_previous_36"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/playPauseBtn"
@@ -45,24 +77,24 @@
         android:id="@+id/playPauseBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="?android:selectableItemBackground"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:onClick="@{(v)->activity.controllerEvent(v)}"
         android:src="@drawable/ic_baseline_play_circle_outline_50"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/nextBtn"
-        app:layout_constraintStart_toEndOf="@id/prevBtn" />
+        app:layout_constraintStart_toEndOf="@id/prevBtn"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/nextBtn"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:background="@null"
+        android:background="?android:selectableItemBackgroundBorderless"
         android:src="@drawable/ic_baseline_skip_next_36"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/playPauseBtn"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <LinearLayout
         android:id="@+id/progressLayout"
@@ -120,6 +152,7 @@
                 android:layout_height="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="@null"
+                android:onClick="@{(v)->activity.controllerEvent(v)}"
                 android:src="@drawable/ic_baseline_fullscreen_24"
                 app:layout_constraintBottom_toBottomOf="@id/exo_position"
                 app:layout_constraintEnd_toEndOf="parent" />

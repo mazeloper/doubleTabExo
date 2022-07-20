@@ -1,4 +1,4 @@
-package com.stacon.doubletabplayerview.views
+package com.stacon.todoexo.custom.views
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -11,7 +11,7 @@ import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
-import com.stacon.doubletabplayerview.R
+import com.stacon.todoexo.R
 
 class SecondsView(context: Context, attrs: AttributeSet?) : ConstraintLayout(context, attrs) {
 

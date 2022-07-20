@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <com.stacon.doubletabplayerview.views.DoubleTapPlayerView
+        <com.stacon.todoexo.custom.views.DoubleTapPlayerView
             android:id="@+id/playerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,7 +29,7 @@
             app:controller_layout_id="@layout/exo_playback_control_view"
             app:vd_controller="@id/vdOverlay" />
 
-        <com.stacon.doubletabplayerview.views.VideoOverlay
+        <com.stacon.todoexo.custom.views.VideoOverlay
             android:id="@+id/vdOverlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

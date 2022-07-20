@@ -8,8 +8,8 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.util.Util
-import com.stacon.doubletabplayerview.views.DoubleTapPlayerView
-import com.stacon.doubletabplayerview.views.VideoOverlay
+import com.stacon.todoexo.custom.views.DoubleTapPlayerView
+import com.stacon.todoexo.custom.views.VideoOverlay
 
 class PlayerManager(
     private val context: Context
@@ -28,7 +28,7 @@ class PlayerManager(
     var player: ExoPlayer? = null
         private set
 
-    fun isListenerInit() = ::listener.isInitialized
+    private fun isListenerInit() = ::listener.isInitialized
 
     fun injectView(playerView: DoubleTapPlayerView, overlay: VideoOverlay) {
         this.playerView = playerView
@@ -45,6 +45,13 @@ class PlayerManager(
 
     fun seekTo(positionMs: Long) {
         player?.seekTo(positionMs)
+    }
+
+    fun updatePlayerState() {
+        player?.let {
+            if (it.isPlaying) it.pause()
+            else it.play()
+        }
     }
 
 

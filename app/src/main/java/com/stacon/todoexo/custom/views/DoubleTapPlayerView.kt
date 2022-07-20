@@ -1,4 +1,4 @@
-package com.stacon.doubletabplayerview.views
+package com.stacon.todoexo.custom.views
 
 import android.content.Context
 import android.os.Handler
@@ -9,8 +9,8 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.core.view.GestureDetectorCompat
 import com.google.android.exoplayer2.ui.StyledPlayerView
-import com.stacon.doubletabplayerview.PlayerDoubleTapListener
-import com.stacon.doubletabplayerview.R
+import com.stacon.todoexo.R
+import com.stacon.todoexo.custom.PlayerDoubleTapListener
 
 class DoubleTapPlayerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

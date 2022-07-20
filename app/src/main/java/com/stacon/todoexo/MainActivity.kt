@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.TimeBar
-import com.stacon.doubletabplayerview.views.VideoOverlay
+import com.stacon.todoexo.custom.views.VideoOverlay
 import com.stacon.todoexo.databinding.ActivityMainBinding
 import com.stacon.todoexo.databinding.ExoPlaybackControlViewBinding
 

@@ -1,4 +1,4 @@
-package com.stacon.doubletabplayerview
+package com.stacon.todoexo.custom
 
 interface SeekListener {
     /**

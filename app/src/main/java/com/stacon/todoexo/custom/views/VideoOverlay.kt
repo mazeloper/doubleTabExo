@@ -1,23 +1,20 @@
-package com.stacon.doubletabplayerview.views
+package com.stacon.todoexo.custom.views
 
 import android.content.Context
 import android.media.session.PlaybackState
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.*
-import androidx.appcompat.widget.AlertDialogLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.PlayerView
-import com.stacon.doubletabplayerview.PlayerDoubleTapListener
-import com.stacon.doubletabplayerview.R
-import com.stacon.doubletabplayerview.SeekListener
-import com.stacon.doubletabplayerview.log.JsLog
+import com.stacon.todoexo.R
+import com.stacon.todoexo.custom.PlayerDoubleTapListener
+import com.stacon.todoexo.custom.SeekListener
 
 class VideoOverlay(context: Context, private val attrs: AttributeSet?) :
     ConstraintLayout(context, attrs), PlayerDoubleTapListener {
@@ -429,7 +426,6 @@ class VideoOverlay(context: Context, private val attrs: AttributeSet?) :
             }
 
             if (player.currentPosition < player.duration && posX > playerView.width * 0.65) {
-                JsLog.debug("!@#!@#!@#!@#!@#!@")
                 return true
             }
 

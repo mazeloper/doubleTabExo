@@ -1,4 +1,4 @@
-package com.stacon.doubletabplayerview.views
+package com.stacon.todoexo.custom.views
 
 import android.animation.Animator
 import android.animation.ValueAnimator
@@ -9,8 +9,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
-import com.stacon.doubletabplayerview.R
-import com.stacon.doubletabplayerview.log.JsLog
+import com.stacon.todoexo.R
 
 class CircleClipTapView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 

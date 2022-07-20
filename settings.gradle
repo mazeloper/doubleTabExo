@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TodoExo"
 include ':app'
-include ':doubletapplayerview'

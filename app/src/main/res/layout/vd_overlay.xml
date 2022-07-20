@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_constraint_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
 
-    <com.stacon.doubletabplayerview.views.CircleClipTapView
+    <com.stacon.todoexo.custom.views.CircleClipTapView
         android:id="@+id/circle_clip_tap_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
         android:focusable="false" />
 
-    <com.stacon.doubletabplayerview.views.SecondsView
+    <com.stacon.todoexo.custom.views.SecondsView
         android:id="@+id/seconds_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
