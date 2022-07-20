@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="VideoOverlay">
+        <attr name="vd_playerView" format="reference" />
+        <attr name="vd_seekSeconds" format="integer" />
+        <attr name="vd_animationDuration" format="integer" />
+        <attr name="vd_iconAnimationDuration" format="integer" />
+        <attr name="vd_arcSize" format="dimension" />
+        <attr name="vd_tapCircleColor" format="color" />
+        <attr name="vd_backgroundCircleColor" format="color" />
+
+        <attr name="vd_textAppearance" format="reference" />
+        <attr name="vd_icon" format="reference" />
+    </declare-styleable>
+
+    <!-- default -->
+    <color name="vd_background_circle_color">#20EEEEEE</color>
+    <color name="vd_tap_circle_color">#18FFFFFF</color>
+    <dimen name="vd_arc_size">40dp</dimen>
+
+    <declare-styleable name="DoubleTapPlayerView">
+        <attr name="vd_controller" format="reference" />
+    </declare-styleable>
+
+
+    <style name="SecondsTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>
