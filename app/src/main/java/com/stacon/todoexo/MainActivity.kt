@@ -1,10 +1,9 @@
 package com.stacon.todoexo
 
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -14,7 +13,6 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.ui.TimeBar
 import com.stacon.todoexo.custom.views.VideoOverlay
 import com.stacon.todoexo.databinding.ActivityMainBinding
 import com.stacon.todoexo.databinding.ExoPlaybackControlViewBinding
@@ -68,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             override fun onAnimationEnd() {
                 binding.vdOverlay.visibility = View.GONE
                 binding.playerView.useController = true
-
             }
         })
         binding.playerView.doubleTapDelay = 800
@@ -83,24 +80,17 @@ class MainActivity : AppCompatActivity() {
                     controlsBinding.playPauseBtn.setImageResource(R.drawable.ic_baseline_play_circle_outline_50)
             }
         })
-        controlsBinding.exoProgress.addListener(object : TimeBar.OnScrubListener {
-            override fun onScrubStart(timeBar: TimeBar, position: Long) {
-            }
-
-            override fun onScrubMove(timeBar: TimeBar, position: Long) {
-                playerManager.seekTo(position)
-            }
-
-            override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
-            }
-        })
+        controlsBinding.exoProgress.addMoveListener {
+            playerManager.seekTo(it)
+        }
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     fun toggleFullscreen() {
         if (isVideoFullscreen) {
             changeConstraints(false)
             setSystemUI(false)
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             isVideoFullscreen = false
         } else {
             changeConstraints(true)
@@ -111,12 +101,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun closeScreen() {
-        AlertDialog.Builder(this).apply {
-            setView(android.R.layout.select_dialog_item)
-            title = "??"
-        }.create().show()
+        // TODO : 2022/07/21
     }
 
+    /**
+     * 가로 / 세로에 따른 ExoPlayer 비율 초기화
+     */
     private fun changeConstraints(fullscreen: Boolean) {
         val ratio = if (fullscreen) null else "16:9"
         val constraintSet = ConstraintSet()
@@ -127,6 +117,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 가로 / 세로에 따른 시스템 UI 초기화
+     */
     private fun setSystemUI(fullscreen: Boolean) {
         binding.rootConstraintLayout.post {
             if (fullscreen) {
