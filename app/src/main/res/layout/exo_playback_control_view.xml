@@ -13,7 +13,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:onClick="closeScreen"
             android:orientation="horizontal"
             android:paddingHorizontal="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +24,6 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
-                android:onClick="closeScreen"
                 android:src="@drawable/ic_baseline_close_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_title"
@@ -81,7 +79,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="?android:selectableItemBackgroundBorderless"
-            android:onClick="@{()->playerManager.updatePlayerState()}"
             android:src="@drawable/ic_baseline_play_circle_outline_50"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/nextBtn"
@@ -174,15 +171,4 @@
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <data>
-
-        <variable
-            name="activity"
-            type="com.stacon.todoexo.MainActivity" />
-
-        <variable
-            name="playerManager"
-            type="com.stacon.todoexo.PlayerManager" />
-    </data>
 </layout>

@@ -28,6 +28,7 @@
                 android:layout_height="match_parent"
                 android:keepScreenOn="true"
                 app:animation_enabled="false"
+                app:use_controller="true"
                 app:controller_layout_id="@layout/exo_playback_control_view"/>
 
 
@@ -40,19 +41,5 @@
                 app:vd_playerView="@id/playerView" />
 
         </FrameLayout>
-
-        <!--    <TextView-->
-        <!--        android:id="@+id/temp"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="0dp"-->
-        <!--        android:gravity="center"-->
-        <!--        android:text="글목록"-->
-        <!--        android:textSize="32dp"-->
-        <!--        android:textStyle="bold"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/frameLayout" />-->
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

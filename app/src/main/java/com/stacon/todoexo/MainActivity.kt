@@ -35,25 +35,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val view = binding.root
-        val controls = view.findViewById<ConstraintLayout>(R.id.exo_controls_root)
+        binding.lifecycleOwner = this
+
+        val controls = binding.root.findViewById<ConstraintLayout>(R.id.exo_controls_root)
         controlsBinding = ExoPlaybackControlViewBinding.bind(controls)
-        controlsBinding.playerManager = playerManager
-        controlsBinding.activity = this
 
         setSystemUI(false)
         // 플레이어 라이플사이클옵저버 연결
         lifecycle.addObserver(playerManager)
+
         // 더블탭플레이어 초기화
         initDoubleTapPlayerView()
 
         // 플레이어, 오버레이 연결
         playerManager.injectView(binding.playerView, binding.vdOverlay)
+
         // 미디어 설정
         playerManager.addMediaItem(MediaItem.fromUri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"))
         playerManager.addMediaItem(MediaItem.fromUri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"))
 
-        initViews()
+        initPlayerView()
+        initPlayerController()
     }
 
     private fun initDoubleTapPlayerView() {
@@ -71,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         binding.playerView.doubleTapDelay = 800
     }
 
-    private fun initViews() {
+    private fun initPlayerView() {
         playerManager.addListener(object : Player.Listener {
             override fun onIsPlayingChanged(isPlaying: Boolean) {
                 if (isPlaying)
@@ -80,9 +82,13 @@ class MainActivity : AppCompatActivity() {
                     controlsBinding.playPauseBtn.setImageResource(R.drawable.ic_baseline_play_circle_outline_50)
             }
         })
-        controlsBinding.exoProgress.addMoveListener {
-            playerManager.seekTo(it)
-        }
+    }
+
+    private fun initPlayerController() = with(controlsBinding) {
+        closeBtn.setOnClickListener { closeScreen() }
+        playPauseBtn.setOnClickListener { playerManager.updatePlayerState() }
+
+        exoProgress.addMoveListener { playerManager.seekTo(it) }
     }
 
     @SuppressLint("SourceLockedOrientationActivity")
